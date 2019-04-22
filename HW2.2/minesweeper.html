@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body{
+                background-color: rgb(250,250,250);
+
+            }
+            .container{
+                max-width:50%;
+                height: 50%;
+                text-align: center;
+                margin: auto;
+            }
+            button{
+                padding: 1.9em;
+                margin: 2px 0px;
+                background-color: rgb(150 150 150);
+            }
+            .application_key{
+                margin-top: 20px;
+                color:"#000";
+
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <p id="timer"></p>
+            <div id="looser">Enjoy game</div>
+            <button id="square1-1" onclick=change(id) oncontextmenu=sign_bomb(id) ></button>
+            <button id='square1-2' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square1-3' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square1-4' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square1-5' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square1-6' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square1-7' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square1-8' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <br>
+            <button id="square2-1" onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square2-2' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square2-3' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square2-4' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square2-5' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square2-6' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square2-7' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square2-8' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <br>
+            <button id="square3-1" onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square3-2' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square3-3' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square3-4' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square3-5' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square3-6' onclick=change(id) oncontextmenu=sign_bomb(id)></button >
+            <button id='square3-7' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square3-8' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <br>
+            <button id="square4-1" onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square4-2' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square4-3' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square4-4' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square4-5' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square4-6' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square4-7' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square4-8' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <br>
+            <button id="square5-1" onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square5-2' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square5-3' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square5-4' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square5-5' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square5-6' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square5-7' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square5-8' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <br>
+            <button id="square6-1" onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square6-2' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square6-3' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square6-4' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square6-5' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square6-6' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square6-7' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square6-8' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <br>
+            <button id="square7-1" onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square7-2' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square7-3' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square7-4' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square7-5' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square7-6' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square7-7' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square7-8' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <br>
+            <button id="square8-1" onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square8-2' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square8-3' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square8-4' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square8-5' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square8-6' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square8-7' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <button id='square8-8' onclick=change(id) oncontextmenu=sign_bomb(id)></button>
+            <br>
+            <div class="application_key">
+                    <button id="pauss" onclick=resume(id)>resume</button>     
+                    <button id="reload" onclick=reload()>start over</button>
+                    <button id="help" onclick=help()>Help</button>
+            </div>
+        </div>
+
+        <script>
+            var lose=0;
+            hor_cell=8;
+            ver_cell=8;
+            num_cell=hor_cell*ver_cell;
+            num_bomb=10;
+            gamedata = [];
+            for(var i=0 ; i<8 ; i++ ) {
+                var m=new Array(8).fill(0)
+                gamedata.push(m)
+            }
+            var j=0;
+            while(j<(num_bomb)){
+                var rand=Math.floor(Math.random()*num_cell);
+                randc=((rand/hor_cell)-Math.floor(rand/hor_cell))*hor_cell;
+                randr=((Math.floor(rand/hor_cell)));
+                if( gamedata[randr][randc]==0 ){
+                    gamedata[randr][randc]=1;
+                    j++;
+                }
+            }
+            function reload(){
+                location.reload();
+            }
+            function help(){
+                document.getElementById("help").innerHTML="left click for choose a button & right click for specify bomb"
+            }
+            console.log('gamedata',gamedata);
+            var start=0;
+            function change(ID) {
+                for( i=1 ; i<=hor_cell+1 ; i++){
+                    for(j=1 ; j<=ver_cell+1 ; j++){
+                        if(start==1){
+                            if(lose==0){
+                                butt_id="square"+i.toString()+"-"+j.toString();
+                                switch(ID){
+                                    case butt_id:
+                                    if(gamedata[i-1][j-1]==0){
+                                        if(i==1 && j==1){
+                                            sum_neighbor=gamedata[0][1]+gamedata[1][0]+gamedata[1][1]
+                                        }
+                                        else if (i==1 && j<hor_cell && j>1){
+                                            sum_neighbor=gamedata[0][j-2]+gamedata[0][j]+gamedata[1][j-2]+gamedata[1][j-1]+gamedata[1][j];
+                                        }
+                                        else if (i==1 && j==hor_cell){
+                                            sum_neighbor=gamedata[0][j-2]+gamedata[1][j-2]+gamedata[1][j-1]
+                                        }
+                                        else if (i==ver_cell && j==1){
+                                            sum_neighbor=gamedata[i-2][0]+gamedata[i-2][1]+gamedata[i-1][1]
+                                        }
+                                        else if(i==ver_cell && j>1 && j<hor_cell) {
+                                            sum_neighbor=gamedata[i-1][j-2]+gamedata[i-1][j]+gamedata[i-2][j-2]+gamedata[i-2][j-1]+gamedata[i-2][j]
+                                        }
+                                        else if(i==ver_cell && j==hor_cell){
+                                            sum_neighbor=gamedata[i-1][j-2]+gamedata[i-2][j-1]+gamedata[i-2][j-2]
+                                        }
+                                        else if(i>1 && i<ver_cell && j==1){
+                                            sum_neighbor=gamedata[i-2][j-1]+gamedata[i][j-1]+gamedata[i-1][j]+gamedata[i-2][j]+gamedata[i][j];
+                                        }
+                                        else if (i>1 && i<ver_cell && j==hor_cell){
+                                            sum_neighbor=gamedata[i-1][j-2]+gamedata[i-2][j-2]+gamedata[i-2][j-1]+gamedata[i][j-2]+gamedata[i][j-1]
+                                        }
+                                        else{
+                                            sum_neighbor=gamedata[i-2][j-1]+gamedata[i][j-1]+gamedata[i-1][j-2]+gamedata[i-1][j]+gamedata[i-2][j-2]+gamedata[i-2][j]+gamedata[i][j-2]+gamedata[i][j];
+                                        }
+                                        console.log('sum_neighbor',sum_neighbor)
+                                        document.getElementById(butt_id).innerHTML=sum_neighbor;
+                                        document.getElementById(butt_id).style.padding = "13px 20.9px 21.5px 21.7px"
+                                        document.getElementById(butt_id).style.opacity = "0.35"
+                                        document.getElementById(butt_id).style.fontWeight = "bold"
+                                    }
+                                    else{
+                                        document.getElementById(butt_id).style.position="relative"
+                                        document.getElementById(butt_id).innerHTML= '<i class="fas fa-bomb" style="font-size:30px"></i>';
+                                        var src = document.getElementById(butt_id);                                
+                                        document.getElementsByClassName("fas fa-bomb")[0].style.position="absolute";
+                                        document.getElementsByClassName("fas fa-bomb")[0].style.top="7px";                                                      
+                                        document.getElementsByClassName("fas fa-bomb")[0].style.right="7px";
+                                        lose=1;                                                
+                                    }
+                                    break
+                                }
+                            }else{
+                                document.getElementById("looser").innerHTML="you lose";
+                                document.getElementsByTagName("body")[0].style.backgroundColor="red"
+                            }
+                        }   
+                    }
+                }
+            }
+            function sign_bomb(ID){
+                if(start==1){
+                    if(lose==0){
+                        for( i=1 ; i<=hor_cell+1 ; i++){
+                            for(j=1 ; j<=ver_cell+1 ; j++){
+                                butt_id="square"+i.toString()+"-"+j.toString();
+                                switch(ID){
+                                    case butt_id:
+                                        document.getElementById(butt_id).style.position="relative"
+                                        document.getElementById(butt_id).innerHTML= '<i class="fa fa-flag" style="font-size:30px"></i>';
+                                        var src = document.getElementById(butt_id);                                        
+                                        document.getElementsByClassName("fa fa-flag")[0].style.position="absolute";
+                                        document.getElementsByClassName("fa fa-flag")[0].style.top="7px";                                                      
+                                        document.getElementsByClassName("fa fa-flag")[0].style.right="7px";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            var n_pauss=0;
+            function resume(){
+                if(n_pauss/2-Math.floor(n_pauss/2)==0){
+                    start=1
+                    document.getElementById("pauss").innerHTML="pauss";
+                    n_pauss++
+                    if(n_pauss==1){
+                        var date = new Date()
+                        var countDownDate = new Date().getTime();
+                        var xxx = setInterval(function() {
+                        var now = new Date().getTime();
+                        var distance = now-countDownDate;
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                        document.getElementById("timer").innerHTML = hours + "h "
+                        + minutes + "m " + seconds + "s ";
+                        }, 1000);
+                    }
+                }else{
+                    document.getElementById("pauss").innerHTML="resume";
+                    n_pauss++;
+                    start=0
+                    var countDownDate2 = new Date().getTime();
+                }
+            }
+        </script>
+    </body>
+</html> 
