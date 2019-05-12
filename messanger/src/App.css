@@ -307,3 +307,144 @@ textarea{
   margin-top: 25px;
   margin-bottom: 75px;
 }
+/*massenger page*/
+textarea {
+  border: 0px solid #000; 
+}
+.contact_list {
+  border: 1px solid rgb(223, 223, 223);
+  width: 35vw;
+  display: inline-block;
+}
+
+.Chat {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #000;
+  width: 69vw;
+  display: inline-block;
+  background-color: #fff;
+}
+.conv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 7px 0px
+}
+.profileContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 0.15;
+}
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 4;
+}
+.contact_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 98%;
+}
+.latest_message {
+  font-size: 15px;
+  color:#999; 
+}
+.latest_date {
+  color: #999;
+  font-size: 12px;
+}
+.unseen_message {
+  color: #fff;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 12px;
+  background-color: rgb(147, 214, 80);
+}
+.messengerscreen {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 100vh;
+}
+.screen {
+  background-image: url(./img/backgroundChat.jpg);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 10px;
+  height: 100vh;;
+}
+.header {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.header_profile {
+  width: 30px;
+  display: flex;
+}
+.header_convFN {
+  font-size: 16px;
+}
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+}
+.send_icon{
+  width: 20px;
+
+}
+.message {
+  background-color: #fff;
+  color: #000;
+  padding: 2px 10px;
+  margin: 2px;
+  border-radius: 7px 7px 7px 0px;
+}
+.message_sender {
+  background-color: rgb(220, 240, 200);
+  color: #000;
+  padding: 2px 10px;
+  margin: 2px;
+  border-radius: 7px 7px 0px 7px;
+}
+.sender {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.ps_div {
+  display: flex;
+  flex-grow: 0.004;
+}
+.profile_sender {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.receiver{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.profile_img {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+}
