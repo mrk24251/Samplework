@@ -373,13 +373,18 @@ textarea {
   justify-content: flex-start;
   height: 100vh;
 }
+.base_screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 .screen {
   background-image: url(./img/backgroundChat.jpg);
+  height: 87.5vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 10px;
-  height: 100vh;;
 }
 .header {
   flex: 1;
@@ -454,4 +459,12 @@ textarea {
 .emoji_button {
   width: 30px;
   height: 30px;
+}
+.emoji{
+  display: flex;
+  justify-content: flex-end;
+}
+.writting_textarea {
+  padding: 2px;
+  overflow: hidden;
 }

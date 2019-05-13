@@ -1,3 +1,4 @@
+
 function toggleEmojiPicker () {
   this.setState({
     showEmojiPicker: !this.state.showEmojiPicker
@@ -13,5 +14,25 @@ function addEmoji (emoji) {
     showEmojiPicker: false
   })
 }
+function handleKeyPress (event) {
+  if (event.key === 'Enter') {
+    event.preventDefault()
+    this.sendMessage()
+  }
+}
+function sendMessage () {
+  const { newMessage, currentUser, currentRoom } = this.state
 
-export { toggleEmojiPicker, addEmoji }
+  if (newMessage.trim() === '') return
+
+  currentUser.sendMessage({
+    text: newMessage,
+    roomId: `${currentRoom.id}`
+  })
+
+  this.setState({
+    newMessage: ''
+  })
+}
+
+export { toggleEmojiPicker, addEmoji, handleKeyPress, sendMessage }
