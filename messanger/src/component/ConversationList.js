@@ -44,7 +44,7 @@ export default class ConversationList extends React.Component {
       <div className='contact_list'>
         { this.state.conversationList.map((conversation, index) => {
           return (
-            <div className='conv'>
+            <div className='conv' key={index}>
               <div className='profileContainer'>
                 <img src={profile} className='profile_img' />
               </div>

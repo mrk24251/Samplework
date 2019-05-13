@@ -10,6 +10,7 @@ class Login extends React.Component {
     this.state={
       bborderEmail: '1px solid #999',
       bborderPassword: '1px solid #999',
+      hover: 'false',
       Email:null,
       Password: null,
       error: {

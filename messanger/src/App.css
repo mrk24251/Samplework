@@ -313,7 +313,7 @@ textarea {
 }
 .contact_list {
   border: 1px solid rgb(223, 223, 223);
-  width: 35vw;
+  width: 55vw;
   display: inline-block;
 }
 
@@ -322,8 +322,7 @@ textarea {
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid #000;
-  width: 69vw;
-  display: inline-block;
+  width: 100vw;
   background-color: #fff;
 }
 .conv {
@@ -396,16 +395,20 @@ textarea {
 .header_convFN {
   font-size: 16px;
 }
+.chat_screen {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start
+}
 .footer {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  padding: 5px;
+  padding: 6px;
 }
 .send_icon{
   width: 20px;
-
 }
 .message {
   background-color: #fff;
@@ -447,4 +450,8 @@ textarea {
   border-radius: 50%;
   width: 45px;
   height: 45px;
+}
+.emoji_button {
+  width: 30px;
+  height: 30px;
 }
