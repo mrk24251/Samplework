@@ -6,10 +6,12 @@
     "@webscopeio/react-textarea-autocomplete": "^4.4.0",
     "emoji-mart": "^2.11.1",
     "emoji-picker-react": "^2.1.1",
+    "re-resizable": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-feather": "^1.1.6",
     "react-helmet": "^5.2.1",
+    "react-resizable": "^1.8.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
     "validate.js": "^0.12.0"

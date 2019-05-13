@@ -333,6 +333,9 @@ textarea {
   background-color: #fff;
   padding: 7px 0px
 }
+.conv:hover {
+  background-color: rgb(233, 233, 233);
+}
 .profileContainer {
   display: flex;
   flex-direction: row;
@@ -467,4 +470,21 @@ textarea {
 .writting_textarea {
   padding: 2px;
   overflow: hidden;
+}
+.resizable_box {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-Content: 'center';
+}
+/* Responsive*/
+@media only screen and (max-width: 750px) {
+  .contact_list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .Chat{
+    display: none!important;
+  }
 }
