@@ -165,11 +165,9 @@ textarea{
   width: 30%;
   padding: 0px 10px 45px 10px;
 }
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 900px) {
   .container_profile{
     width: 80%;
-    text-align: center;
-    margin: auto;
     padding: 10px
   }
   .add_profileimg{
@@ -313,7 +311,7 @@ textarea {
 }
 .contact_list {
   border: 1px solid rgb(223, 223, 223);
-  width: 55vw;
+  width: 42vw;
   display: inline-block;
 }
 
@@ -395,6 +393,10 @@ textarea {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  background-color: rgb(170, 230, 111);
+}
+.header:hover {
+  background-color: rgb(147, 214, 80);
 }
 .header_profile {
   width: 30px;

@@ -22,6 +22,9 @@ class Profile extends React.Component {
 			}
 		}
 	}
+	componentDidMount(){
+		document.title = "Profile"
+	}
 	handleChange = (e) => {
 		let name = e.target.name
 		this.setState({ [name]: e.target.value })

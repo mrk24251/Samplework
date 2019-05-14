@@ -20,6 +20,9 @@ class Signup extends React.Component {
       }
     }
   }
+  componentDidMount(){
+    document.title = "Sign up"
+  }
   handleChange = (e) => {
     let name = e.target.name
     this.setState({ [name]: e.target.value })

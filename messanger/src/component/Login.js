@@ -2,7 +2,6 @@ import React from 'react';
 import logo from '../img/logo.ico';
 import '../App.css';
 import validate from '../validation/validateFunction'
-import {Link} from 'react-router-dom'
 
 class Login extends React.Component {
   constructor(props){
@@ -18,6 +17,9 @@ class Login extends React.Component {
         password: null
       }
     }
+  }
+  componentDidMount(){
+    document.title = "Login"
   }
   handleChange = (e) => {
     let name = e.target.name

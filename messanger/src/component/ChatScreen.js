@@ -6,7 +6,7 @@ import { Picker } from 'emoji-mart'
 import {
   addEmoji,
   toggleEmojiPicker
-} from './methods'
+} from './emoji/methods'
 import 'emoji-mart/css/emoji-mart.css'
 
 export default class ChatScreen extends React.Component {
