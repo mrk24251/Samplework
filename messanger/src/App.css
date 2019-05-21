@@ -165,7 +165,7 @@ textarea{
   width: 30%;
   padding: 0px 10px 45px 10px;
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 780px) {
   .container_profile{
     width: 80%;
     padding: 10px
@@ -381,14 +381,13 @@ textarea {
 }
 .screen {
   background-image: url(./img/backgroundChat.jpg);
-  height: 87.5vh;
+  height: 89vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 10px;
 }
 .header {
-  flex: 1;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -399,8 +398,7 @@ textarea {
   background-color: rgb(147, 214, 80);
 }
 .header_profile {
-  width: 30px;
-  display: flex;
+  width: 40px;
 }
 .header_convFN {
   font-size: 16px;

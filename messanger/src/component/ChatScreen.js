@@ -14,7 +14,21 @@ export default class ChatScreen extends React.Component {
     super(props)
     this.state = {
       showEmojiPicker: false,
-      newMessage: ''
+      newMessage: '',
+      messages: [
+        {
+          id: 1,
+          message: 'salam'
+        },
+        {
+          id: 2,
+          message: 'salam'
+        },
+        {
+          id: 1,
+          message: 'khoobi?'
+        }
+      ]
     }
     this.addEmoji = addEmoji.bind(this)
     this.toggleEmojiPicker = toggleEmojiPicker.bind(this)
@@ -22,6 +36,10 @@ export default class ChatScreen extends React.Component {
   handleInput = (e) => {
     var newMessage = e.target.name
     this.setState({ [newMessage]: e.target.value })
+  }
+  handleSend = (e) => {
+    this.setState({ ...this.state,messages: [...this.state.messages, { id: 1, message: this.state.newMessage }]})
+    this.setState({newMessage: ''})
   }
   render () {
     var {
@@ -31,15 +49,23 @@ export default class ChatScreen extends React.Component {
     return (
       <div className='base_screen'>
         <div className='screen'>
-          <div className='receiver'>
-            <div className='ps_div'>
-              <img src={profile} className='profile_sender' />
-            </div>
-            <span className='message'>salammm</span>
-          </div>
-          <div className='sender'>
-            <span className='message_sender'>salammm!!!!</span>
-          </div>
+        {this.state.messages.map((item, index) => {
+          if (item.id === 1) {
+            return (
+              <div className='sender'>
+                <span className='message'>{item.message}</span>
+              </div>
+            )
+          } else {
+            return (
+              <div className='receiver'>
+                <span className='message'>{item.message}</span>
+              </div>
+            )
+          }
+        }
+
+        )}
           <div className='emoji'>
             {showEmojiPicker ? (
                 <Picker set='emojione' onSelect={this.addEmoji} />
@@ -58,7 +84,10 @@ export default class ChatScreen extends React.Component {
             className='emoji_button'
             onClick={this.toggleEmojiPicker} />
           <span> &nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <img src={send} className='send_icon' />
+          <img
+            src={send}
+            className='send_icon'
+            onClick={this.handleSend} />
         </div>
       </div>
     )
