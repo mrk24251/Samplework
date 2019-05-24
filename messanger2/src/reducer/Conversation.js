@@ -3,19 +3,9 @@ const INIT = {
   newMessages: '',
   newEmojiMessage: '',
   showEmojiPicker: false,
-  message: [{
-    id: 1,
-    message: 'salam'
-  },
-  {
-    id: 2,
-    message: 'salam'
-  },
-  {
-    id: 1,
-    message: 'khoobi?'
-  }
-  ]
+  conversationList: [],
+  messages: [],
+  user:[]
 }
 
 function conversation (state = INIT, action) {
@@ -30,8 +20,8 @@ function conversation (state = INIT, action) {
       }
     case 'SAVE_NEW_MESSAGE_IN_CHAT':
       return { ...state,
-        message: [...state.message, {id: 1, message: action.payload}]
-        
+        message: [...state.message, { id: 1, message: action.payload }]
+
       }
     case 'CLICK_EMOJI':
       return { ...state, showEmojiPicker: !state.showEmojiPicker }
@@ -41,6 +31,19 @@ function conversation (state = INIT, action) {
       return { ...state,
         newEmojiMessage: action.payload
       }
+    case 'SAVE_CONVERSATION_LIST':
+      return {
+        ...state,
+        conversationList: action.payload
+      }
+    case 'SAVE_MESSAGES':
+        return { ...state,
+          messages: action.payload
+        }
+    case 'LOAD_USER':
+        return { ...state,
+          user: action.payload
+        }
     default:
       return state
   }

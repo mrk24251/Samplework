@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import validate from '../validation/validateFunction'
 import { Link } from 'react-router-dom/cjs/react-router-dom';
+import axios from 'axios'
 
 class Signup extends React.Component {
   constructor(props){
@@ -16,7 +17,8 @@ class Signup extends React.Component {
       error: {
         email: null,
         password: null,
-        password2: null
+        password2: null,
+        equalPassword:null
       }
     }
   }
@@ -39,6 +41,23 @@ class Signup extends React.Component {
     let passwordError = validate('password', this.state.Password)
     let password2Error =validate('password2',this.state.Password2)
     this.setState({...this.state, error: {...this.state.error, email:emailError, password: passwordError, password2: password2Error}})
+    if(this.state.password === this.state.reTypePassword) {
+      let data = {
+        email: this.state.Email,
+        password: this.state.Password
+      }
+      axios.post('https://api.paywith.click/auth/signup/', data)
+      .then(function (response) {
+        console.log('response::::',response);
+        window.localStorage.setItem('token', response.data.token)
+        window.localStorage.setItem('id', response.data.id)
+      })
+      .catch(function (error) {
+        console.log('error::::',error);
+      });
+    } else {
+      this.setState({equalPassword: 'Passwod and retype password do not match!'})
+    }
   }
   render(){
       return (

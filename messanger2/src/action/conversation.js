@@ -25,3 +25,18 @@ export const addEmoji = () => ({
 export const chooseEmoji = () => ({
   type: 'CHOSEN_EMOJI'
 })
+
+export const saveConversationList = (conversationList) => ({
+  type: 'SAVE_CONVERSATION_LIST',
+  payload: conversationList
+})
+
+export const  AddNewMassage = (messages) => ({
+  type: 'SAVE_MESSAGES',
+  payload: messages
+})
+
+export const  LoadUser = (loaduser) => ({
+  type: 'LOAD_USER',
+  payload: loaduser
+})

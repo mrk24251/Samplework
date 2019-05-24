@@ -44,6 +44,8 @@ class Login extends React.Component {
     axios.post('https://api.paywith.click/auth/signin/', data)
     .then(function (response) {
       console.log('response::::',response);
+      window.localStorage.setItem('token',response.data.data.token)
+      window.localStorage.setItem('id',response.data.data.profile.id)
     })
     .catch(function (error) {
       console.log('error::::',error);

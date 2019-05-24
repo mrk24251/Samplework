@@ -1,4 +1,4 @@
-import { chooseEmoji, addNewMessages } from "../../action/conversation";
+import { chooseEmoji, addNewMessages } from '../../action/conversation'
 
 function addEmoji (emoji) {
   var newMessage = this.props.newMessage
@@ -6,7 +6,7 @@ function addEmoji (emoji) {
   this.setState({
     newMessages: text
   }, () => this.props.dispatch(addNewMessages(this.state.newMessages)))
-  console.log('mmm',this.state.newMessages)
+  console.log('mmm', this.state.newMessages)
   this.props.dispatch(chooseEmoji())
 }
 

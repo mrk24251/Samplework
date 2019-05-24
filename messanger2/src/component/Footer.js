@@ -9,7 +9,25 @@ export default class Footer extends React.Component {
     super(props)
     this.state = {
       showEmojiPicker: false,
-      newMessage: null
+      newMessage: null,
+      EmojiNumber:0,
+      Enter:0,
+    }
+  }
+  componentDidUpdate(){
+    if(this.props.showEmojiPicker==true && this.state.EmojiNumber==0 && this.state.Enter==0){
+      this.setState({EmojiNumber:1})
+      console.log('lll')
+    }else if(this.props.showEmojiPicker==false && this.state.EmojiNumber==1 && this.state.Enter==0)
+    {
+    document.getElementsByClassName('writting_textarea')[0].value=this.props.newMessages
+    this.setState({EmojiNumber:0})
+    this.setState({newMessage:this.props.newMessages} ,() =>
+    this.props.dispatch(addNewMessage(this.state.newMessage)))
+    }
+    else if(this.state.Enter==1){
+      document.getElementsByClassName('writting_textarea')[0].value=''
+      this.setState({Enter:0})
     }
   }
   handleInput = (e) => {
@@ -19,17 +37,24 @@ export default class Footer extends React.Component {
   }
   handleClick = (e) => {
     this.props.dispatch(addEmoji(this.state.showEmojiPicker))
+    this.setState({newMessage:null})
   }
   handleSenderClick = () => {
     if (this.state.newMessage !== null && this.state.newMessage !==''){
       this.props.dispatch(addNewMessageInChat(this.state.newMessage))}else{
         return null
-      }}
-  handleFocus = (e) => {
-    e.target.value=this.props.newMessages
-    this.setState({newMessage:this.props.newMessages} ,() =>
-    this.props.dispatch(addNewMessage(this.state.newMessage)))
-  }
+      }
+      this.setState({Enter:1})
+      this.setState({newMessage:null})
+      axios.post('https://api.paywith.click/conversation/create', fdata)
+      .then((response) => {
+        console.log('response::::', response)
+        this.setState({ suggestedUsers: response.data.data.users })
+      })
+      .catch((error) => {
+        console.log('error::::', error)
+      })
+    }
   render () {
     return ( 
         <div className='footer'>

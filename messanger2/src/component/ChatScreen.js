@@ -11,18 +11,19 @@ export default class ChatScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      newMessages: this.props.newMessage
+      newMessages: this.props.newMessage,
     }
     this.addEmoji = addEmoji.bind(this)
   }
   handleclick =() => {
-    console.log(this.props.newMessage)
+    console.log('sss',this.props.user)
   }
   render () {
     return (
+      
       <div className='base_screen'>
         <div className='screen'>
-          {this.props.message.map( (item, index) => {
+          {this.props.messages.map( (item, index) => {
             if(item.id === 1) {
               return(
                 <div className='sender' key={index}>
@@ -33,7 +34,7 @@ export default class ChatScreen extends React.Component {
               return(
                 <div className='receiver' key={index}>
                   <div className='ps_div'>
-                    <img src={profile} className='profile_sender' />
+                    <img src={this.props.user.avatar_url} className='profile_sender' />
                   </div>
                   <span className = 'message'>{item.message}</span>
                 </div>

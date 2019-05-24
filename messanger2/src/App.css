@@ -488,3 +488,19 @@ textarea {
     display: none!important;
   }
 }
+
+.search {
+  border: 1px solid #029415;
+}
+
+.suggest {
+  font-size: 10px;
+  margin: 0;
+  padding: 5px 15px;
+  border-bottom: 1px solid #1b8ca1;
+}
+
+.suggestedAvatar {
+  width: 15px;
+  border-radius: 7.5px
+}

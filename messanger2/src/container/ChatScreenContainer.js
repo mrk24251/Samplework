@@ -9,7 +9,9 @@ const mapStateToProps = state => {
   return {
     newMessage: state.newMessage,
     message: state.message,
-    showEmojiPicker: state.showEmojiPicker
+    showEmojiPicker: state.showEmojiPicker,
+    messages: state.messages,
+    user: state.user
   }
 }
 
