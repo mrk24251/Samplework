@@ -13,8 +13,8 @@ export default class Chat extends React.Component {
     return (
       <div className='Chat'>
         <div className='header'>
-          <img src={profile} className='header_profile' />
-          <span className='header_convFN'>&nbsp;&nbsp;&nbsp; Mohammad </span>
+          <img src={this.props.user.avatar_url} className='header_profile' />
+          <span className='header_convFN'>&nbsp;&nbsp;&nbsp; {this.props.user.name} </span>
         </div>
         <ChatScreenContainer />
       </div>

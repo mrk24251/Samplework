@@ -3,6 +3,7 @@ import send from '../img/send.png'
 import emoji from '../img/emoji.png'
 import { addNewMessage , addEmoji , addNewMessageInChat} from '../action/conversation'
 import 'emoji-mart/css/emoji-mart.css'
+import axios from 'axios'
 
 export default class Footer extends React.Component {
   constructor (props) {
@@ -12,6 +13,7 @@ export default class Footer extends React.Component {
       newMessage: null,
       EmojiNumber:0,
       Enter:0,
+      token: window.localStorage.getItem('token')
     }
   }
   componentDidUpdate(){
@@ -39,21 +41,26 @@ export default class Footer extends React.Component {
     this.props.dispatch(addEmoji(this.state.showEmojiPicker))
     this.setState({newMessage:null})
   }
-  handleSenderClick = () => {
-    if (this.state.newMessage !== null && this.state.newMessage !==''){
-      this.props.dispatch(addNewMessageInChat(this.state.newMessage))}else{
-        return null
-      }
-      this.setState({Enter:1})
-      this.setState({newMessage:null})
-      axios.post('https://api.paywith.click/conversation/create', fdata)
-      .then((response) => {
-        console.log('response::::', response)
-        this.setState({ suggestedUsers: response.data.data.users })
-      })
-      .catch((error) => {
-        console.log('error::::', error)
-      })
+  handleSenderClick = (conversation) => {
+    // if (this.state.newMessage !== null && this.state.newMessage !==''){
+    //   this.props.dispatch(addNewMessageInChat(this.state.newMessage))}else{
+    //     return null
+    //   }
+    //   this.setState({Enter:1})
+    //   this.setState({newMessage:null})
+      let fdata = new FormData()
+      console.log('conversationnnnnnnn',conversation.id)
+      fdata.append('conversation_id', conversation.id)
+      fdata.append('token', this.state.token)
+      fdata.append('text',this.state.newMessage)
+      axios.post('https://api.paywith.click/conversation/create/', fdata)
+        .then((response) => {
+          console.log('responshello', response)
+        })
+        .catch((error) => {
+          console.log('error::::', error)
+        })
+      console.log('jjjjjjjjjj',this.props.user)
     }
   render () {
     return ( 
@@ -67,12 +74,12 @@ export default class Footer extends React.Component {
           <img
             src={emoji}
             className='emoji_button'
-            onClick={this.handleClick} />
+            onClick={this.handleClick}/>
           <span> &nbsp;&nbsp;&nbsp;&nbsp;</span>
           <img
 			      src={send}
 			      className='send_icon'
-            onClick={this.handleSenderClick} />
+            onClick={this.handleSenderClick(this.props.conversation)} />
         </div>
     )
   }

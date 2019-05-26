@@ -1,7 +1,7 @@
 import React from 'react'
 import profile from '../img/profile.jpg'
 import axios from 'axios'
-import { saveConversationList , AddNewMassage , LoadUser} from '../action/conversation'
+import { saveConversationList, LoadUser , conversationInformation } from '../action/conversation'
 
 export default class ConversationList extends React.Component {
   constructor (props) {
@@ -11,7 +11,9 @@ export default class ConversationList extends React.Component {
       myId: window.localStorage.getItem('id'),
       token: window.localStorage.getItem('token'),
       suggestedUsers: [],
-      messages:[]
+      messages: [],
+      user: [],
+      conversation: []
     }
   }
 
@@ -23,7 +25,7 @@ export default class ConversationList extends React.Component {
       }
     })
       .then(response => {
-        console.log('aa',response)
+        console.log('ajjjja', response)
         this.props.dispatch(saveConversationList(response.data.data.conversation_details))
       })
       .catch(error => {
@@ -46,37 +48,25 @@ export default class ConversationList extends React.Component {
       })
   }
   handleClick (user) {
-    console.log('uuuu', user.id)
     let fdata = new FormData()
     fdata.append('user_id', user.id)
     fdata.append('token', this.state.token)
-    
     axios.post('https://api.paywith.click/conversation/', fdata)
       .then((response) => {
-        console.log('respons3333', response)
-
+        console.log('respons,c33', response)
       })
       .catch((error) => {
         console.log('error::::', error)
-      })}
-     
-      handleClickUser (user) {
-        console.log('uuuu', user.id)
-        let fdata = new FormData()
-        fdata.append('user_id', user.id)
-        fdata.append('token', this.state.token)
-        this.props.dispatch(LoadUser(user))     
-        axios.post('https://api.paywith.click/conversation/', fdata)
-          .then((response) => {
-            console.log('respons3', response)
-            this.props.dispatch(AddNewMassage(response.data.data.messages))
-          })
-          .catch((error) => {
-            console.log('error::::', error)
-          })}
-  // handleClick () {
-  //   this.setState({ conversationList : [ ...this.state.conversationList , {hosein:'aa'} ]}, console.log(this.state.conversationList))
-  // }
+      })
+  }
+
+  handleClickUser (user,conversation) {
+    this.setState({ user: user })
+    this.setState({ conversation: conversation },
+      () => this.props.dispatch(conversationInformation(conversation)))
+    this.props.dispatch(LoadUser(user))
+    console.log('uuuuuser', this.state.conversation)
+  }
 
   render () {
     return (
@@ -94,13 +84,15 @@ export default class ConversationList extends React.Component {
           })
 
           }
+
         </div>
         { this.props.conversationList.map((conversation, index) => {
-          return(
+          return (
+
             conversation.users.map((user, idx) => {
               if (user.id != this.state.myId) {
                 return (
-                  <div className='conv' key={index} onClick={() => this.handleClickUser(user)}>
+                  <div className='conv' key={index} onClick={() => this.handleClickUser(user,conversation)}>
                     <div className='profileContainer'>
                       <img src={user.avatar_url} className='profile_img' />
                     </div>
@@ -119,7 +111,6 @@ export default class ConversationList extends React.Component {
               }
             })
           )
-          
         }
         )
         }

@@ -6,7 +6,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => {
-  console.log('bbbbb',state.conversationList)
+  console.log('bbbbb', state.conversationList)
   return {
     conversationList: state.conversationList
   }

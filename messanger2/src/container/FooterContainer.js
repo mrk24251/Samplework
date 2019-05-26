@@ -8,7 +8,10 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => {
   return {
     newMessages: state.newMessages,
-    showEmojiPicker: state.showEmojiPicker
+    showEmojiPicker: state.showEmojiPicker,
+    conversationList: state.conversationList,
+    user: state.user,
+    conversation: state.conversation
   }
 }
 

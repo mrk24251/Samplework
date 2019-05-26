@@ -31,12 +31,17 @@ export const saveConversationList = (conversationList) => ({
   payload: conversationList
 })
 
-export const  AddNewMassage = (messages) => ({
+export const AddNewMassage = (messages) => ({
   type: 'SAVE_MESSAGES',
   payload: messages
 })
 
-export const  LoadUser = (loaduser) => ({
+export const LoadUser = (loaduser) => ({
   type: 'LOAD_USER',
   payload: loaduser
+})
+
+export const conversationInformation = (information) => ({
+  type: 'CONVERSATION_INFORMATION',
+  payload: information
 })
