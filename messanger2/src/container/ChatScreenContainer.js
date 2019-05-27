@@ -10,7 +10,8 @@ const mapStateToProps = state => {
     newMessage: state.newMessage,
     message: state.message,
     showEmojiPicker: state.showEmojiPicker,
-    messages: state.messages
+    messages: state.messages,
+    user: state.user
   }
 }
 

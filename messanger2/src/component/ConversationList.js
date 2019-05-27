@@ -91,7 +91,16 @@ export default class ConversationList extends React.Component {
           />
           { this.state.suggestedUsers.map((user, index) => {
             return (
-              <p className='suggest' onClick={() => this.handleClick(user)}><img src={user.avatar_url} className='suggestedAvatar' /> {user.email}</p>
+              <div className='conv' key={index} onClick={() => this.handleClick(user)}>
+                <div className='profileContainer'>
+                  <img src={user.avatar_url} className='profile_img' />
+                </div>
+                <div className='contentContainer'>
+                  <div className='contact_content'>
+                    <span>{user.name}</span>
+                  </div>
+                </div>
+              </div>
             )
           })
 
@@ -100,8 +109,8 @@ export default class ConversationList extends React.Component {
         </div>
         { this.props.conversationList.map((conversation, index) => {
           return (
-
             conversation.users.map((user, idx) => {
+              console.log('cccccccc', this.state.messages)
               if (user.id != this.state.myId) {
                 return (
                   <div className='conv' key={index} onClick={() => this.handleClickUser(user, conversation)}>
@@ -110,12 +119,12 @@ export default class ConversationList extends React.Component {
                     </div>
                     <div className='contentContainer'>
                       <div className='contact_content'>
-                        <span>{user.name}</span>
-                        <span className='latest_date'>{conversation.date}</span>
+                        <span>{user.email}</span>
+                        <span className='latest_date'>{conversation.latest_message_date.slice(0,10)}</span>
                       </div>
                       <div className='contact_content'>
-                        <span className='latest_message'>{conversation.latest_message_date}</span>
-                        <span className='unseen_message'>{conversation.latest_message}</span>
+                        <span className='latest_message'>{}</span>
+                        <span className='unseen_message'>{conversation.unseen_messages.myId}</span>
                       </div>
                     </div>
                   </div>
