@@ -15,16 +15,19 @@ export default class ChatScreen extends React.Component {
     }
     this.addEmoji = addEmoji.bind(this)
   }
+  handleClick () {
+    console.log(this.props.messages)
+  }
   render () {
     return (
 
       <div className='base_screen'>
         <div className='screen'>
           {this.props.messages.map((item, index) => {
-            if (item.id === window.localStorage.getItem('token')) {
+            if (item.sender.id == window.localStorage.getItem('id')) {
               return (
                 <div className='sender' key={index}>
-                  <span className='message_sender' >{item.message}</span>
+                  <span className='message_sender' >{item.text}</span>
                 </div>
               )
             } else {
@@ -33,7 +36,7 @@ export default class ChatScreen extends React.Component {
                   <div className='ps_div'>
                     <img src={profile} className='profile_sender' />
                   </div>
-                  <span className='message'>{item.message}</span>
+                  <span className='message'>{item.text}</span>
                 </div>
               )
             }

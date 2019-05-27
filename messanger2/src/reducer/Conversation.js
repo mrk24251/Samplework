@@ -6,7 +6,7 @@ const INIT = {
   conversationList: [],
   messages: [],
   user: [],
-  conversation:[]
+  conversation: []
 }
 
 function conversation (state = INIT, action) {

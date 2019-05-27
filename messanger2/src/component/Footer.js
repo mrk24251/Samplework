@@ -35,13 +35,13 @@ export default class Footer extends React.Component {
   handleInput = (e) => {
     this.setState({ newMessage: e.target.value }, () =>
     this.props.dispatch(addNewMessage(this.state.newMessage)))
-    console.log('sss',this.props.newMessages)
+    // console.log('sss',this.props.newMessages)
   }
   handleClick = (e) => {
     this.props.dispatch(addEmoji(this.state.showEmojiPicker))
     this.setState({newMessage:null})
   }
-  handleSenderClick = (conversation) => {
+  handleSenderClick = () => {
     // if (this.state.newMessage !== null && this.state.newMessage !==''){
     //   this.props.dispatch(addNewMessageInChat(this.state.newMessage))}else{
     //     return null
@@ -49,13 +49,13 @@ export default class Footer extends React.Component {
     //   this.setState({Enter:1})
     //   this.setState({newMessage:null})
       let fdata = new FormData()
-      console.log('conversationnnnnnnn',conversation.id)
-      fdata.append('conversation_id', conversation.id)
+      console.log('conversationnnnnnnn',this.props.conversation.id)
+      fdata.append('conversation_id', this.props.conversation.id)
       fdata.append('token', this.state.token)
       fdata.append('text',this.state.newMessage)
       axios.post('https://api.paywith.click/conversation/create/', fdata)
         .then((response) => {
-          console.log('responshello', response)
+          console.log('hello', response)
         })
         .catch((error) => {
           console.log('error::::', error)
@@ -79,7 +79,7 @@ export default class Footer extends React.Component {
           <img
 			      src={send}
 			      className='send_icon'
-            onClick={this.handleSenderClick(this.props.conversation)} />
+            onClick={() => this.handleSenderClick()} />
         </div>
     )
   }

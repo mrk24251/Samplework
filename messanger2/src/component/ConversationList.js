@@ -1,7 +1,7 @@
 import React from 'react'
 import profile from '../img/profile.jpg'
 import axios from 'axios'
-import { saveConversationList, LoadUser , conversationInformation } from '../action/conversation'
+import { saveConversationList, LoadUser, conversationInformation, AddNewMassage } from '../action/conversation'
 
 export default class ConversationList extends React.Component {
   constructor (props) {
@@ -60,12 +60,24 @@ export default class ConversationList extends React.Component {
       })
   }
 
-  handleClickUser (user,conversation) {
+  handleClickUser (user, conversation) {
     this.setState({ user: user })
     this.setState({ conversation: conversation },
       () => this.props.dispatch(conversationInformation(conversation)))
     this.props.dispatch(LoadUser(user))
     console.log('uuuuuser', this.state.conversation)
+    let fdata = new FormData()
+    fdata.append('user_id', user.id)
+    fdata.append('token', this.state.token)
+    axios.post('https://api.paywith.click/conversation/', fdata)
+      .then((response) => {
+        console.log('respons,c33', response.data.data.messages)
+        this.setState({ messages: response.data.data.messages },
+          () => this.props.dispatch(AddNewMassage(this.state.messages)))
+      })
+      .catch((error) => {
+        console.log('error::::', error)
+      })
   }
 
   render () {
@@ -92,7 +104,7 @@ export default class ConversationList extends React.Component {
             conversation.users.map((user, idx) => {
               if (user.id != this.state.myId) {
                 return (
-                  <div className='conv' key={index} onClick={() => this.handleClickUser(user,conversation)}>
+                  <div className='conv' key={index} onClick={() => this.handleClickUser(user, conversation)}>
                     <div className='profileContainer'>
                       <img src={user.avatar_url} className='profile_img' />
                     </div>
