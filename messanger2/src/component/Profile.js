@@ -2,7 +2,8 @@ import React from 'react';
 import '../App.css';
 import person from '../img/person.jpeg';
 import camera from '../img/camera.png';
-import validate from '../validation/validateFunction'
+import validate from '../validation/validateFunction';
+import axios from 'axios'
 
 class Profile extends React.Component {
 	constructor(props){
@@ -15,6 +16,7 @@ class Profile extends React.Component {
 			FName: null,
 			LName: null,
 			City: null,
+			Bio: null,
 			error: {
 				FName: null,
 				LName: null,
@@ -41,7 +43,20 @@ class Profile extends React.Component {
 		let LNameError = validate('lastname', this.state.LName)
 		let CityError =validate('City',this.state.City)
 		this.setState({...this.state, error: {...this.state.error, FName:FNameError, LName: LNameError, City: CityError}})
+		let fdata = new FormData()
+		console.log(this.state.FName+' '+this.state.LName)
+    fdata.append('token', window.localStorage.getItem('token'))
+    fdata.append('name', this.state.FName+'  '+this.state.LName)
+		fdata.append('description', this.state.Bio)
+    axios.post('https://api.paywith.click/auth/profile/', fdata)
+    .then(function (response) {
+      console.log('response::::',response);
+    })
+    .catch(function (error) {
+      console.log('error::::',error);
+});
 	}
+
 	render(){
 		return(
 			<div>
@@ -88,7 +103,7 @@ class Profile extends React.Component {
 							<span className="description">&nbsp;&nbsp;&nbsp;Bio </span>
 							<textarea
 							className="description_input"
-							name="Description"
+							name="Bio"
 							onClick={this.handleClick}
 							onChange={this.handleChange}
 							style={{border: this.state.bborderDescription}}/>

@@ -61,7 +61,6 @@ export default class Footer extends React.Component {
           console.log('error::::', error)
         })
       console.log('jjjjjjjjjj',this.props.user)
-      
     }
   render () {
     return ( 

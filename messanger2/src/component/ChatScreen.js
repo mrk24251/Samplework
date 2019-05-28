@@ -15,9 +15,6 @@ export default class ChatScreen extends React.Component {
     }
     this.addEmoji = addEmoji.bind(this)
   }
-  handleClick () {
-    console.log(this.props.messages)
-  }
   render () {
     return (
       <div>

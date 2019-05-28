@@ -314,6 +314,7 @@ textarea {
   width: 35vw;
   display: inline-block;
   background-color: #fff;
+  overflow: scroll
 }
 
 .Chat {
@@ -419,6 +420,7 @@ textarea {
 }
 .send_icon{
   width: 20px;
+  cursor: pointer;
 }
 .message {
   background-color: #fff;
@@ -464,6 +466,7 @@ textarea {
 .emoji_button {
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 .emoji{
   display: flex;

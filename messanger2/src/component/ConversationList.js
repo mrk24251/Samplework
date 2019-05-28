@@ -18,6 +18,10 @@ export default class ConversationList extends React.Component {
   }
 
   componentDidMount () {
+    this.handleClickUser(this.state.user, this.state.conversation)
+    this.interval = setInterval(() => {
+      this.handleClickUser(this.state.user, this.state.conversation)
+    }, 5000)
     const token = window.localStorage.getItem('token')
     axios.get('https://api.paywith.click/conversation/', {
       params: {
@@ -59,7 +63,6 @@ export default class ConversationList extends React.Component {
         console.log('error::::', error)
       })
   }
-
   handleClickUser (user, conversation) {
     this.setState({ user: user })
     this.setState({ conversation: conversation },
@@ -119,8 +122,8 @@ export default class ConversationList extends React.Component {
                     </div>
                     <div className='contentContainer'>
                       <div className='contact_content'>
-                        <span>{user.email}</span>
-                        <span className='latest_date'>{conversation.latest_message_date.slice(0,10)}</span>
+                        <span>{user.name}</span>
+                        <span className='latest_date'>{conversation.latest_message_date.slice(0, 10)}</span>
                       </div>
                       <div className='contact_content'>
                         <span className='latest_message'>{}</span>
