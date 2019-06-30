@@ -1,0 +1,34 @@
+Arguments: 
+  /home/mrk2/.nvm/versions/node/v12.1.0/bin/node /usr/share/yarn/bin/yarn.js add react-native --exact
+
+PATH: 
+  /home/mrk2/.nvm/versions/node/v12.1.0/bin:/home/mrk2/OpenFOAM/ThirdParty-6/platforms/linux64Gcc/gperftools-svn/bin:/home/mrk2/OpenFOAM/ThirdParty-6/platforms/linux64Gcc/ParaView-5.4.0/bin:/home/mrk2/OpenFOAM/mrk2-6/platforms/linux64GccDPInt32Opt/bin:/home/mrk2/OpenFOAM/site/6/platforms/linux64GccDPInt32Opt/bin:/home/mrk2/OpenFOAM/OpenFOAM-6/platforms/linux64GccDPInt32Opt/bin:/home/mrk2/OpenFOAM/OpenFOAM-6/bin:/home/mrk2/OpenFOAM/OpenFOAM-6/wmake:/home/mrk2/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/user_directory/Android/Sdk/tools:/home/user_directory/Android/Sdk/platform-tools
+
+Yarn version: 
+  1.16.0
+
+Node version: 
+  12.1.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/react-native: tunneling socket could not be established, cause=getaddrinfo ENOTFOUND proxy.abc.com
+      at ClientRequest.onError (/usr/share/yarn/lib/cli.js:141076:17)
+      at Object.onceWrapper (events.js:284:20)
+      at ClientRequest.emit (events.js:196:13)
+      at Socket.socketErrorListener (_http_client.js:402:9)
+      at Socket.emit (events.js:196:13)
+      at emitErrorNT (internal/streams/destroy.js:91:8)
+      at emitErrorAndCloseNT (internal/streams/destroy.js:59:3)
+      at processTicksAndRejections (internal/process/task_queues.js:84:17)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -14,7 +14,7 @@ export default class ChatScreen extends React.Component {
     super(props)
     this.state = {
       showEmojiPicker: false,
-      newMessage: '',
+      newMessage: null,
       messages: [
         {
           id: 1,
@@ -34,8 +34,7 @@ export default class ChatScreen extends React.Component {
     this.toggleEmojiPicker = toggleEmojiPicker.bind(this)
   }
   handleInput = (e) => {
-    var newMessage = e.target.name
-    this.setState({ [newMessage]: e.target.value })
+    this.setState({ newMessage: e.target.value })
   }
   handleSend = (e) => {
     this.setState({ ...this.state,messages: [...this.state.messages, { id: 1, message: this.state.newMessage }]})
