@@ -1,15 +1,36 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, TouchableWithoutFeedback, KeyboardAvoidingView} from 'react-native';
 import MyInput from './MyInput'
+import axios from 'axios'
 
 type Props = {};
 export default class Login extends Component<Props> {
   constructor (props) {
     super(props)
+    this.state={
+      Email:null,
+      Password: null
+    }
     this.getInputText = this.getInputText.bind(this)
   }
   getInputText (text, inputName) {
     this.setState({text})
+    console.log('llll')
+  }
+  handleClickButton = () => {
+    let data = {
+      email: this.state.Email,
+      password: this.state.Password
+    }
+    axios.post('https://api.paywith.click/auth/signin/', data)
+    .then(function (response) {
+      console.log('response::::',response);
+      window.localStorage.setItem('token',response.data.data.token)
+      window.localStorage.setItem('id',response.data.data.profile.id)
+    })
+    .catch(function (error) {
+      console.log('error::::',error);
+});
   }
   render(){
     return (
@@ -24,7 +45,7 @@ export default class Login extends Component<Props> {
           >CROW</Text>
         </View>
 
-        <View style={styles.section}>
+        <View style={styles.sectionInput}>
           <Image 
             style={styles.Email_icon}
             source={require('../img/Email.png')}
@@ -46,7 +67,7 @@ export default class Login extends Component<Props> {
           />
         </View>
 
-        <View style={styles.section}>
+        <View style={styles.sectionButton}>
           <TouchableWithoutFeedback style={styles.Button}>
             <View
               style={styles.button}>
@@ -70,9 +91,13 @@ export default class Login extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
-  section: {
+  sectionInput: {
     flex: 1,
     flexDirection: 'column',
+    paddingHorizontal: '10%',
+  },
+  sectionButton: {
+    flex: 1,
     paddingHorizontal: '10%',
   },
   Email_icon: { 

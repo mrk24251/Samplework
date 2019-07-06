@@ -11,7 +11,7 @@ export default class ProfileInput extends Component {
 	<Fumi
 		label={this.props.label}
 		labelStyle={{ color: '#a3a3a3' }}
-		inputStyle={{ color: '#f95a25' }}
+		inputStyle={{ color: '#000' }}
 		iconClass={FontAwesomeIcon}
 		iconName={this.props.iconName}
 		iconColor={'#f95a25'}

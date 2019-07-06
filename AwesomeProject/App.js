@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet,Image, Text, View,ImageBackground} from 'react-native';
+import Login1 from './component/ConversationList';
 import Login from './component/Login';
 import SignUp from './component/SignUp'
 import Profile from './component/Profile'
@@ -17,9 +18,9 @@ export default class App extends Component<Props> {
   render() {
     return (
       <ImageBackground source={ require('./img/Lbackground.jpg')} style={{width: '100%', height: '100%'} }>
-         {/* <Login /> */}
+         <Login />
       {/* <SignUp /> */}
-         <Profile />
+         {/* <Profile /> */}
       </ImageBackground>
       // <Profile />
     );
