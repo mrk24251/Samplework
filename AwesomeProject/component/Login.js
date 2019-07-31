@@ -2,31 +2,35 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, TouchableWithoutFeedback, KeyboardAvoidingView} from 'react-native';
 import MyInput from './MyInput'
 import axios from 'axios'
+import AsyncStorage from '@react-native-community/async-storage';
 
 type Props = {};
 export default class Login extends Component<Props> {
   constructor (props) {
     super(props)
     this.state={
-      Email:null,
-      Password: null
+      email:null,
+      password: null
     }
     this.getInputText = this.getInputText.bind(this)
   }
   getInputText (text, inputName) {
-    this.setState({text})
-    console.log('llll')
+    let name=inputName;
+    this.setState({[name] : text})
+    console.log('ccc',this.state.password)
   }
+
   handleClickButton = () => {
+    console.log('lllllll',this.state.email)
     let data = {
-      email: this.state.Email,
-      password: this.state.Password
+      email: this.state.email,
+      password: this.state.password
     }
     axios.post('https://api.paywith.click/auth/signin/', data)
     .then(function (response) {
       console.log('response::::',response);
-      window.localStorage.setItem('token',response.data.data.token)
-      window.localStorage.setItem('id',response.data.data.profile.id)
+      AsyncStorage.setItem('token', response.data.data.token)
+      AsyncStorage.setItem('id',JSON.stringify(response.data.data.profile.id))
     })
     .catch(function (error) {
       console.log('error::::',error);
@@ -68,10 +72,14 @@ export default class Login extends Component<Props> {
         </View>
 
         <View style={styles.sectionButton}>
-          <TouchableWithoutFeedback style={styles.Button}>
+          <TouchableWithoutFeedback
+          style={styles.Button}
+          onPress={() => this.handleClickButton()}>
             <View
               style={styles.button}>
-              <Text style={styles.text}>
+              <Text
+              style={styles.text}
+              >
                 Sign in
               </Text>
             </View>

@@ -1,9 +1,50 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, TouchableWithoutFeedback, KeyboardAvoidingView} from 'react-native';
 import ProfileInput from './ProfileInput'
+import axios from 'axios'
+import AsyncStorage from '@react-native-community/async-storage';
 
 type Props = {};
 export default class Login extends Component<Props> {
+  constructor(props){
+		super(props)
+		this.state={
+			FName: null,
+			LName: null,
+			City: null,
+			Bio: null,
+    }
+    this.getInputText = this.getInputText.bind(this)
+  }
+  
+  getInputText (text, inputName) {
+    let name=inputName;
+    this.setState({[name] : text})
+    console.log('ccc',this.state.FName)
+  }
+
+  handleClickButton = () => {
+    let fdata = new FormData()
+    console.log('mmm',AsyncStorage.getItem('token'))
+    AsyncStorage.getItem('token').then((keyValue) => {
+      console.log(keyValue) //Display key value
+      this.setState({'token': keyValue})
+      }, (error) => {
+      console.log(error) //Display error
+    });
+    console.log('respjjl:',this.abc)
+    fdata.append('token',this.state.token)
+    fdata.append('name', this.state.FName+'  '+this.state.LName)
+	  fdata.append('description', this.state.Bio)
+    axios.post('https://api.paywith.click/auth/profile/', fdata)
+    .then(function (response) {
+      console.log('response::::',response);
+    })
+    .catch(function (error) {
+      console.log('error::::',error);
+});
+	}
+
   render(){
     return (
       <KeyboardAvoidingView style={styles.container} >
@@ -20,23 +61,33 @@ export default class Login extends Component<Props> {
           <ProfileInput
 		  	    label={'firstname'}
             iconName={'user'}
+            onType={this.getInputText}
+            inputName='FName'
           />
           <ProfileInput
 		      	label={'lastname'}
             iconName={'user'}
+            onType={this.getInputText}
+            inputName='LName'
           />
           <ProfileInput
             label={'city'}
             iconName={'map-marker'}
+            onType={this.getInputText}
+            inputName='City'
           />
           <ProfileInput
             label={'bio'}
             iconName={'info'}
+            onType={this.getInputText}
+            inputName='Bio'
           />
         </View>
 
         <View style={styles.section}>
-          <TouchableWithoutFeedback style={styles.Button}>
+          <TouchableWithoutFeedback 
+          style={styles.Button}
+          onPress={() => this.handleClickButton()}>
             <View
               style={styles.button}>
               <Text style={styles.text}>

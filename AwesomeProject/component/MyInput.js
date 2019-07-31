@@ -14,6 +14,7 @@ export default class MyInput extends React.Component {
       <TextInput
         style={styles.input}
         placeholder={ this.props.placeholder }
+        secureTextEntry={true}
         keyboardType = { this.props.keyboardType }
         onChangeText={(text) => {
             this.props.onType(text, this.props.inputName)

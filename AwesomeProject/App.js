@@ -4,7 +4,7 @@ import Login1 from './component/ConversationList';
 import Login from './component/Login';
 import SignUp from './component/SignUp'
 import Profile from './component/Profile'
-import example from './component/example'
+import ConversationList from './component/ConversationList'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -17,15 +17,16 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <ImageBackground source={ require('./img/Lbackground.jpg')} style={{width: '100%', height: '100%'} }>
-         <Login />
-      {/* <SignUp /> */}
-         {/* <Profile /> */}
-      </ImageBackground>
+      // <ImageBackground source={ require('./img/Lbackground.jpg')} style={{width: '100%', height: '100%'} }>
+      //    {/* <Login /> */}
+      //   {/* <SignUp /> */}
+      //    {/* <Profile /> */}
+      // </ImageBackground>
+      <ConversationList />
       // <Profile />
     );
   }
-}0
+}
 
 const styles = StyleSheet.create({
   container: {

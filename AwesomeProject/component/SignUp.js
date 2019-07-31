@@ -1,15 +1,41 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, TouchableWithoutFeedback, KeyboardAvoidingView} from 'react-native';
 import MyInput from './MyInput'
+import axios from 'axios'
+import AsyncStorage from '@react-native-community/async-storage'
 
 type Props = {};
 export default class Login extends Component<Props> {
   constructor (props) {
     super(props)
+    this.state={
+      email:null,
+      password: null,
+      reTypepassword:null
+    }
     this.getInputText = this.getInputText.bind(this)
   }
   getInputText (text, inputName) {
-    this.setState({text})
+    let name=inputName;
+    this.setState({[name] : text})
+    console.log('lllllll',this.state.email)
+  }
+  handleClickButton = () => {
+    if(this.state.password === this.state.reTypepassword) {
+      let data = {
+        email: this.state.email,
+        password: this.state.password
+      }
+      axios.post('https://api.paywith.click/auth/signup/', data)
+      .then(function (response) {
+        console.log('response::::',response);
+        AsyncStorage.setItem('token', response.data.token)
+        AsyncStorage.setItem('id', JSON.stringify(response.data.id))
+      })
+      .catch(function (error) {
+        console.log('error::::',error);
+      });
+    }
   }
   render(){
     return (
@@ -43,19 +69,21 @@ export default class Login extends Component<Props> {
             placeholder='password'
             onType={this.getInputText}
           />
-		  <Image
+		      <Image
             style={styles.RPassword_icon}
             source={require('../img/Password.png')}
           />
-		  <MyInput
-            inputName='password'
+		      <MyInput
+            inputName='reTypepassword'
             placeholder='retype password'
             onType={this.getInputText}
           />
         </View>
 
         <View style={styles.section}>
-          <TouchableWithoutFeedback style={styles.Button}>
+          <TouchableWithoutFeedback
+          style={styles.Button}
+          onPress={() => this.handleClickButton()}>
             <View
               style={styles.button}>
               <Text style={styles.text}>

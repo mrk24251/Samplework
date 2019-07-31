@@ -12,13 +12,15 @@
     "@fortawesome/free-brands-svg-icons": "^5.9.0",
     "@fortawesome/free-regular-svg-icons": "^5.9.0",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@react-native-community/async-storage": "^1.6.1",
     "axios": "^0.19.0",
     "react": "16.8.3",
     "react-native": "0.59.9",
     "react-native-elements": "^1.1.0",
     "react-native-fontawesome": "^6.0.1",
     "react-native-textinput-effects": "^0.5.1",
-    "react-native-vector-icons": "^6.6.0"
+    "react-native-vector-icons": "^6.6.0",
+    "yarn": "^1.17.3"
   },
   "devDependencies": {
     "@babel/core": "7.4.5",
