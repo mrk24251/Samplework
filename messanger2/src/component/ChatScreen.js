@@ -35,7 +35,7 @@ export default class ChatScreen extends React.Component {
                 return (
                   <div className='receiver' key={index}>
                     <div className='ps_div'>
-                      <img src={profile} className='profile_sender' />
+                      <img src={this.props.user.avatar_url} className='profile_sender' />
                     </div>
                     <span className='message'>{item.text}</span>
                   </div>

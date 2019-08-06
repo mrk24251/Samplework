@@ -1,7 +1,7 @@
 import React from 'react'
-import profile from '../img/profile.jpg'
 import axios from 'axios'
 import { saveConversationList, LoadUser, conversationInformation, AddNewMassage } from '../action/conversation'
+import * as moment from 'moment'
 
 export default class ConversationList extends React.Component {
   constructor (props) {
@@ -12,12 +12,14 @@ export default class ConversationList extends React.Component {
       token: window.localStorage.getItem('token'),
       suggestedUsers: [],
       messages: [],
+      isLoading: true,
       user: [],
       conversation: []
     }
   }
 
   componentDidMount () {
+    this.setState({ isLoading: false })
     this.handleClickUser(this.state.user, this.state.conversation)
     this.interval = setInterval(() => {
       this.handleClickUser(this.state.user, this.state.conversation)
@@ -36,6 +38,7 @@ export default class ConversationList extends React.Component {
         console.log('error:', error)
       })
   }
+
   handleChange (e) {
     let fdata = new FormData()
     fdata.append('token', this.state.token)
@@ -51,6 +54,7 @@ export default class ConversationList extends React.Component {
         console.log('error::::', error)
       })
   }
+
   handleClick (user) {
     let fdata = new FormData()
     fdata.append('user_id', user.id)
@@ -62,13 +66,15 @@ export default class ConversationList extends React.Component {
       .catch((error) => {
         console.log('error::::', error)
       })
+    window.location.reload()
   }
+
   handleClickUser (user, conversation) {
     this.setState({ user: user })
     this.setState({ conversation: conversation },
       () => this.props.dispatch(conversationInformation(conversation)))
     this.props.dispatch(LoadUser(user))
-    console.log('uuuuuser', this.state.conversation)
+    console.log('uuuuuser', conversation)
     let fdata = new FormData()
     fdata.append('user_id', user.id)
     fdata.append('token', this.state.token)
@@ -106,7 +112,6 @@ export default class ConversationList extends React.Component {
               </div>
             )
           })
-
           }
 
         </div>
@@ -123,7 +128,7 @@ export default class ConversationList extends React.Component {
                     <div className='contentContainer'>
                       <div className='contact_content'>
                         <span>{user.name}</span>
-                        <span className='latest_date'>{conversation.latest_message_date.slice(0, 10)}</span>
+                        <span className='latest_date'>{moment(moment(moment(conversation.latest_message_date).add(4, 'hour')).add(30 ,'minute')).startOf('minute').fromNow()}</span>
                       </div>
                       <div className='contact_content'>
                         <span className='latest_message'>{}</span>

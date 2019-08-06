@@ -16,6 +16,7 @@ export default class Footer extends React.Component {
       token: window.localStorage.getItem('token')
     }
   }
+  
   componentDidUpdate(){
     if(this.props.showEmojiPicker==true && this.state.EmojiNumber==0 && this.state.Enter==0){
       this.setState({EmojiNumber:1})
@@ -32,15 +33,18 @@ export default class Footer extends React.Component {
       this.setState({Enter:0})
     }
   }
+
   handleInput = (e) => {
     this.setState({ newMessage: e.target.value }, () =>
     this.props.dispatch(addNewMessage(this.state.newMessage)))
     // console.log('sss',this.props.newMessages)
   }
+
   handleClick = (e) => {
     this.props.dispatch(addEmoji(this.state.showEmojiPicker))
     this.setState({newMessage:null})
   }
+
   handleSenderClick = () => {
     // if (this.state.newMessage !== null && this.state.newMessage !==''){
     //   this.props.dispatch(addNewMessageInChat(this.state.newMessage))}else{
@@ -62,6 +66,7 @@ export default class Footer extends React.Component {
         })
       console.log('jjjjjjjjjj',this.props.user)
     }
+
   render () {
     return ( 
         <div className='footer'>

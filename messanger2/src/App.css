@@ -146,6 +146,14 @@ textarea{
   width: 95%;
   outline: none;
 }
+.loading{
+  margin-left: 45%;
+  margin-top: 60px;
+  margin-bottom: 60px
+}
+.uploadImage{
+  display: none;
+}
 .Avatar{
   display: block;
   padding: 50px 40px;

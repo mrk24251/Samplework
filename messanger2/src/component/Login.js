@@ -3,6 +3,7 @@ import logo from '../img/logo.ico';
 import '../App.css';
 import validate from '../validation/validateFunction'
 import axios from 'axios'
+import {withRouter} from 'react-router'
 
 class Login extends React.Component {
   constructor(props){
@@ -19,38 +20,49 @@ class Login extends React.Component {
       }
     }
   }
+
   componentDidMount(){
     document.title = "Login"
   }
+
   handleChange = (e) => {
     let name = e.target.name
     this.setState({ [name]: e.target.value })
     { e.target.value === '' && this.setState({ [name]: null})}
   }
+
   handleClick = (e) => {
     let name = e.target.name
     let bborder = 'bborder'+[name]
     this.setState({bborderEmail: '1px solid #999',bborderPassword: '1px solid #999'})
     this.setState({ [bborder]: '2px solid rgb(75,135,35)' })
   }
+
   handleClickButton = () => {
+    //validation
     let emailError = validate('email', this.state.Email)
     let passwordError = validate('password', this.state.Password)
     this.setState({...this.state, error: {...this.state.error, email:emailError, password: passwordError}})
+    
     let data = {
       email: this.state.Email,
       password: this.state.Password
     }
-    axios.post('https://api.paywith.click/auth/signin/', data)
-    .then(function (response) {
-      console.log('response::::',response);
-      window.localStorage.setItem('token',response.data.data.token)
-      window.localStorage.setItem('id',response.data.data.profile.id)
-    })
-    .catch(function (error) {
-      console.log('error::::',error);
-});
+    if (emailError || passwordError){
+    }else{
+      axios.post('https://api.paywith.click/auth/signin/', data)
+      .then( (response) => {
+        console.log('response::::',response);
+        window.localStorage.setItem('token',response.data.data.token)
+        window.localStorage.setItem('id',response.data.data.profile.id)
+        this.props.history.push('/massenger')
+      })
+      .catch( (error) =>{
+        console.log('error::::',error);
+      });
+    }
   }
+
   render(){
     return (
       <div className="App">
@@ -103,4 +115,4 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+export default withRouter(Login);
