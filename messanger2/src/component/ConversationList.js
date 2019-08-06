@@ -128,7 +128,7 @@ export default class ConversationList extends React.Component {
                     <div className='contentContainer'>
                       <div className='contact_content'>
                         <span>{user.name}</span>
-                        <span className='latest_date'>{moment(moment(moment(conversation.latest_message_date).add(4, 'hour')).add(30 ,'minute')).startOf('minute').fromNow()}</span>
+                        <span className='latest_date'>{moment(moment(moment(conversation.latest_message_date).add(4, 'hour')).add(30, 'minute')).startOf('minute').fromNow()}</span>
                       </div>
                       <div className='contact_content'>
                         <span className='latest_message'>{}</span>
