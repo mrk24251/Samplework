@@ -24,6 +24,7 @@ export default class ConversationList extends React.Component {
     this.interval = setInterval(() => {
       this.handleClickUser(this.state.user, this.state.conversation)
     }, 5000)
+
     const token = window.localStorage.getItem('token')
     axios.get('https://api.paywith.click/conversation/', {
       params: {
@@ -75,9 +76,11 @@ export default class ConversationList extends React.Component {
       () => this.props.dispatch(conversationInformation(conversation)))
     this.props.dispatch(LoadUser(user))
     console.log('uuuuuser', conversation)
+
     let fdata = new FormData()
     fdata.append('user_id', user.id)
     fdata.append('token', this.state.token)
+
     axios.post('https://api.paywith.click/conversation/', fdata)
       .then((response) => {
         console.log('respons,c33', response.data.data.messages)

@@ -22,6 +22,7 @@ export default class ChatScreen extends React.Component {
           <img src={this.props.user.avatar_url} className='header_profile' />
           <span className='header_convFN'>&nbsp;&nbsp;&nbsp; {this.props.user.name} </span>
         </div>
+
         <div className='base_screen'>
           <div className='screen'>
             {this.props.messages.map((item, index) => {
@@ -43,12 +44,14 @@ export default class ChatScreen extends React.Component {
               }
             })
             }
+            {this.props.newMessage}
             <div className='emoji'>
               {this.props.showEmojiPicker ? (
                 <Picker set='emojione' onSelect={this.addEmoji} />
               ) : null}
             </div>
           </div>
+          
           <FooterContainer />
         </div>
       </div>
