@@ -71,15 +71,19 @@ class Profile extends React.Component {
 		this.setState({...this.state, error: {...this.state.error, FName:FNameError, LName: LNameError, City: CityError}})
 		
 		//post data
-		let fdata = new FormData()
-		fdata.append('token', window.localStorage.getItem('token'))
-		fdata.append('name', this.state.FName+'  '+this.state.LName)
-		fdata.append('description', this.state.Bio)
-		fdata.append('avatar',this.state.file)
+		let data = {
+			first_name: this.state.FName,
+			last_name: this.state.LName,
+			// fdata.append('token', window.localStorage.getItem('token'))
+		}
+
 		if (FNameError || LNameError || CityError){
 		}else{
 			this.setState({isLoading: true})
-			axios.post('https://api.paywith.click/auth/profile/', fdata)
+			axios.post('http://127.0.0.1:8000/api/auth/profile', data,{
+				 headers: { Authorization: `Token ${window.localStorage.getItem('token')}`
+				} }
+    )
 			.then( (response)=> {
 				console.log('response::::',response);
 				this.props.history.push('/massenger')

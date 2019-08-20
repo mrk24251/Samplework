@@ -53,17 +53,17 @@ class Signup extends React.Component {
     if(this.state.password === this.state.reTypePassword) {
       //posting data
       let data = {
-        email: this.state.Email,
+        username: this.state.Email,
         password: this.state.Password
       }
       if (emailError || passwordError){
       }else{
         this.setState({isLoading: true})
-        axios.post('https://api.paywith.click/auth/signup/', data)
+        axios.post('http://127.0.0.1:8000/api/auth/register', data)
         .then( (response)=> {
           console.log('response::::',response);
           window.localStorage.setItem('token', response.data.token)
-          window.localStorage.setItem('id', response.data.id)
+          window.localStorage.setItem('id', response.data.user.id)
           this.props.history.push('/profile')
         })
         .catch( (error)=> {

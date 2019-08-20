@@ -6,6 +6,7 @@ import {
 } from './emoji/methods'
 import 'emoji-mart/css/emoji-mart.css'
 import FooterContainer from '../container/FooterContainer'
+import person from '../img/person.jpeg'
 
 export default class ChatScreen extends React.Component {
   constructor (props) {
@@ -19,8 +20,8 @@ export default class ChatScreen extends React.Component {
     return (
       <div>
         <div className='header'>
-          <img src={this.props.user.avatar_url} className='header_profile' />
-          <span className='header_convFN'>&nbsp;&nbsp;&nbsp; {this.props.user.name} </span>
+          <img src={person} className='header_profile' />
+          <span className='header_convFN'>&nbsp;&nbsp;&nbsp; {this.props.user.first_name}&nbsp;&nbsp;{this.props.user.last_name} </span>
         </div>
 
         <div className='base_screen'>
@@ -36,7 +37,7 @@ export default class ChatScreen extends React.Component {
                 return (
                   <div className='receiver' key={index}>
                     <div className='ps_div'>
-                      <img src={this.props.user.avatar_url} className='profile_sender' />
+                      <img src={person} className='profile_sender' />
                     </div>
                     <span className='message'>{item.text}</span>
                   </div>
