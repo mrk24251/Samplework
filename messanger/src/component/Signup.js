@@ -2,6 +2,9 @@ import React from 'react';
 import '../App.css';
 import validate from '../validation/validateFunction'
 import { Link } from 'react-router-dom/cjs/react-router-dom';
+import axios from 'axios'
+import {withRouter} from 'react-router'
+import Spinner from 'react-spinkit'
 
 class Signup extends React.Component {
   constructor(props){
@@ -13,33 +16,66 @@ class Signup extends React.Component {
       Email:null,
       Password: null,
       Password2:null,
+      isLoading: false,
       error: {
         email: null,
         password: null,
-        password2: null
+        password2: null,
+        equalPassword:null
       }
     }
   }
+
   componentDidMount(){
     document.title = "Sign up"
   }
+
   handleChange = (e) => {
     let name = e.target.name
     this.setState({ [name]: e.target.value })
     { e.target.value === '' && this.setState({ [name]: null})}
   }
+
   handleClick = (e) => {
     let name = e.target.name
     let bborder = 'bborder'+[name]
     this.setState({bborderEmail: '1px solid #999',bborderPassword: '1px solid #999',bborderPassword2: '1px solid #999'})
     this.setState({ [bborder]: '2px solid rgb(75,135,35)' })
   }
+
   handleClickButton = () => {
+    //validation
     let emailError = validate('email', this.state.Email)
     let passwordError = validate('password', this.state.Password)
     let password2Error =validate('password2',this.state.Password2)
-    this.setState({...this.state, error: {...this.state.error, email:emailError, password: passwordError, password2: password2Error}})
+    this.setState({...this.state , error: {...this.state.error, email:emailError, password: passwordError, password2: password2Error}})
+    
+    if(this.state.password === this.state.reTypePassword) {
+      //posting data
+      let data = {
+        username: this.state.Email,
+        password: this.state.Password
+      }
+      if (emailError || passwordError){
+      }else{
+        this.setState({isLoading: true})
+        axios.post('http://mrk24251.pythonanywhere.com//api/auth/register', data)
+        .then( (response)=> {
+          console.log('response::::',response);
+          window.localStorage.setItem('token', response.data.token)
+          window.localStorage.setItem('id', response.data.user.id)
+          this.props.history.push('/profile')
+        })
+        .catch( (error)=> {
+          console.log('error::::',error);
+          this.setState({isLoading:false})
+        });
+      }
+    } else {
+      this.setState({equalPassword: 'Passwod and retype password do not match!'})
+    }
   }
+
   render(){
       return (
           <div className="App">
@@ -89,10 +125,17 @@ class Signup extends React.Component {
                   onClick={(e) => this.handleClick(e)}
                   style={{borderBottom : this.state.bborderPassword2}}
                   />
-                  <button
-                  className="signup"
-                  onClick={(e) => this.handleClickButton(e)} 
-                  >Signup</button>
+                  {this.state.isLoading ? (
+                    <Spinner 
+                      name="circle"
+                      color="green"
+                      className='loading'/>
+                  ) : 
+                    <button
+                      className="signup"
+                      onClick={(e) => this.handleClickButton(e)} 
+                    >Signup</button>
+                  }
                   <p>
                     <span className="having_account">
                         Already have an account? 
@@ -109,4 +152,4 @@ class Signup extends React.Component {
       );
     }
 }
-export default Signup;
+export default withRouter(Signup);

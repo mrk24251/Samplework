@@ -1,92 +1,58 @@
 import React from 'react'
 import profile from '../img/profile.jpg'
-import send from '../img/send.png'
-import emoji from '../img/emoji.png'
 import { Picker } from 'emoji-mart'
 import {
-  addEmoji,
-  toggleEmojiPicker
+  addEmoji
 } from './emoji/methods'
 import 'emoji-mart/css/emoji-mart.css'
+import FooterContainer from '../container/FooterContainer'
+import person from '../img/person.jpeg'
 
 export default class ChatScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      showEmojiPicker: false,
-      newMessage: null,
-      messages: [
-        {
-          id: 1,
-          message: 'salam'
-        },
-        {
-          id: 2,
-          message: 'salam'
-        },
-        {
-          id: 1,
-          message: 'khoobi?'
-        }
-      ]
+      newMessages: this.props.newMessage
     }
     this.addEmoji = addEmoji.bind(this)
-    this.toggleEmojiPicker = toggleEmojiPicker.bind(this)
-  }
-  handleInput = (e) => {
-    this.setState({ newMessage: e.target.value })
-  }
-  handleSend = (e) => {
-    this.setState({ ...this.state,messages: [...this.state.messages, { id: 1, message: this.state.newMessage }]})
-    this.setState({newMessage: ''})
   }
   render () {
-    var {
-      showEmojiPicker,
-      newMessage
-    } = this.state
     return (
-      <div className='base_screen'>
-        <div className='screen'>
-        {this.state.messages.map((item, index) => {
-          if (item.id === 1) {
-            return (
-              <div className='sender'>
-                <span className='message'>{item.message}</span>
-              </div>
-            )
-          } else {
-            return (
-              <div className='receiver'>
-                <span className='message'>{item.message}</span>
-              </div>
-            )
-          }
-        }
+      <div>
+        <div className='header'>
+          <img src={person} className='header_profile' />
+          <span className='header_convFN'>&nbsp;&nbsp;&nbsp; {this.props.user.first_name}&nbsp;&nbsp;{this.props.user.last_name} </span>
+        </div>
 
-        )}
-          <div className='emoji'>
-            {showEmojiPicker ? (
+        <div className='base_screen'>
+          <div className='screen'>
+            {this.props.messages.map((item, index) => {
+              if (item.sender_id == window.localStorage.getItem('id') && item.receiver_id == this.props.user.user_id) {
+                return (
+                  <div className='sender' key={index}>
+                    <span className='message_sender' >{item.text}</span>
+                  </div>
+                )
+              } else if (item.sender_id == this.props.user.user_id) {
+                return (
+                  <div className='receiver' key={index}>
+                    <div className='ps_div'>
+                      <img src={person} className='profile_sender' />
+                    </div>
+                    <span className='message'>{item.text}</span>
+                  </div>
+                )
+              }
+            })
+            }
+            <div className='emoji'>
+              {this.props.showEmojiPicker ? (
                 <Picker set='emojione' onSelect={this.addEmoji} />
               ) : null}
+            </div>
           </div>
-        </div>
-        <div className='footer'>
-          <textarea
-            className='writting_textarea'
-            name='newMessage'
-            value={ newMessage }
-            placeholder='write a message...'
-            onChange={this.handleInput} />
-          <img
-            src={emoji}
-            className='emoji_button'
-            onClick={this.toggleEmojiPicker} />
-          <span> &nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <img
-            src={send}
-            className='send_icon'
-            onClick={this.handleSend} />
+          
+          <FooterContainer />
         </div>
       </div>
     )

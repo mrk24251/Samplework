@@ -52,19 +52,23 @@ export default class Footer extends React.Component {
     //   }
     //   this.setState({Enter:1})
     //   this.setState({newMessage:null})
-      let fdata = new FormData()
-      console.log('conversationnnnnnnn',this.props.conversation.id)
-      fdata.append('conversation_id', this.props.conversation.id)
-      fdata.append('token', this.state.token)
-      fdata.append('text',this.state.newMessage)
-      axios.post('https://api.paywith.click/conversation/create/', fdata)
-        .then((response) => {
-          console.log('hello', response)
-        })
-        .catch((error) => {
-          console.log('error::::', error)
-        })
-      console.log('jjjjjjjjjj',this.props.user)
+
+    let data = {
+      text: this.state.newMessage,
+      receiver_id: this.props.user.user_id,
+      sender_id: window.localStorage.getItem('id')
+    }
+
+    axios.post('http://mrk24251.pythonanywhere.com/api/auth/message', data,{
+      headers: { Authorization: `Token ${window.localStorage.getItem('token')}`
+      }
+    })
+      .then((response) => {
+        console.log('hello', response)
+      })
+      .catch((error) => {
+        console.log('error::::', error)
+      })
     }
 
   render () {

@@ -1,25 +1,22 @@
-
-function toggleEmojiPicker () {
-  this.setState({
-    showEmojiPicker: !this.state.showEmojiPicker
-  })
-}
+import { chooseEmoji, addNewMessages } from '../../action/conversation'
 
 function addEmoji (emoji) {
-  var newMessage = this.state.newMessage
+  var newMessage = this.props.newMessage
   var text = `${newMessage}${emoji.native}`
-
   this.setState({
-    newMessage: text,
-    showEmojiPicker: false
-  })
+    newMessages: text
+  }, () => this.props.dispatch(addNewMessages(this.state.newMessages)))
+  console.log('mmm', this.state.newMessages)
+  this.props.dispatch(chooseEmoji())
 }
+
 function handleKeyPress (event) {
   if (event.key === 'Enter') {
     event.preventDefault()
     this.sendMessage()
   }
 }
+
 function sendMessage () {
   const { newMessage, currentUser, currentRoom } = this.state
 
@@ -35,4 +32,4 @@ function sendMessage () {
   })
 }
 
-export { toggleEmojiPicker, addEmoji, handleKeyPress, sendMessage }
+export { addEmoji, handleKeyPress, sendMessage }
