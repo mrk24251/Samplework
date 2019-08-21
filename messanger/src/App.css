@@ -339,7 +339,8 @@ textarea {
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  padding: 7px 0px
+  padding: 7px 0px;
+  cursor: pointer;
 }
 .conv:hover {
   background-color: rgb(233, 233, 233);

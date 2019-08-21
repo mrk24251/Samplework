@@ -15,7 +15,8 @@ export default class ConversationList extends React.Component {
       messages: [],
       isLoading: true,
       user: [],
-      conversation: []
+      conversation: [],
+      isClicked: false
     }
   }
 
@@ -78,6 +79,7 @@ export default class ConversationList extends React.Component {
 
   handleClickUser (user) {
     this.setState({ user: user })
+    this.setState({ isClicked: true })
     // this.setState({ conversation: conversation },
     //   () => this.props.dispatch(conversationInformation(conversation)))
     this.props.dispatch(LoadUser(user))

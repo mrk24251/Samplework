@@ -59,7 +59,7 @@ class Signup extends React.Component {
       if (emailError || passwordError){
       }else{
         this.setState({isLoading: true})
-        axios.post('http://mrk24251.pythonanywhere.com//api/auth/register', data)
+        axios.post('http://mrk24251.pythonanywhere.com/api/auth/register', data)
         .then( (response)=> {
           console.log('response::::',response);
           window.localStorage.setItem('token', response.data.token)

@@ -4,6 +4,7 @@ import '../App.css';
 import validate from '../validation/validateFunction'
 import axios from 'axios'
 import {withRouter} from 'react-router'
+import Spinner from 'react-spinkit'
 
 class Login extends React.Component {
   constructor(props){
@@ -13,6 +14,7 @@ class Login extends React.Component {
       bborderPassword: '1px solid #999',
       hover: 'false',
       Email:null,
+      isLoading: false,
       Password: null,
       error: {
         email: null,
@@ -50,6 +52,7 @@ class Login extends React.Component {
     }
     if (emailError || passwordError){
     }else{
+      this.setState({isLoading: true})
       axios.post('http://mrk24251.pythonanywhere.com/api/auth/Login', data)
       .then( (response) => {
         console.log('response::::',response);
@@ -58,6 +61,7 @@ class Login extends React.Component {
         this.props.history.push('/massenger')
       })
       .catch( (error) =>{
+        this.setState({isLoading:false})
         console.log('error::::',error);
       });
     }
@@ -100,10 +104,17 @@ class Login extends React.Component {
               onClick={(e) => this.handleClick(e)}
               style={{borderBottom : this.state.bborderPassword}}
               />
-              <button
-              className="log_in"
-              onClick={(e) => this.handleClickButton(e)}
-              >log in</button>
+              {this.state.isLoading ? (
+                <Spinner 
+                  name="circle"
+                  color="green"
+                  className='loading'/>
+              ) : 
+                <button
+                className="log_in"
+                onClick={(e) => this.handleClickButton(e)}
+                >log in</button>
+              }
               <button
               className="sign_up"
               onClick={()=> {this.props.history.replace('/signup')}}
