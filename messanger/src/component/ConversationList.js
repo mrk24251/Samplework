@@ -3,6 +3,8 @@ import axios from 'axios'
 import { saveConversationList, LoadUser, conversationInformation, AddNewMassage } from '../action/conversation'
 import * as moment from 'moment'
 import person from '../img/person.jpeg'
+import Mysearch from '../specialComponent/mysearch'
+import MyDrawer from '../specialComponent/myDrawer'
 
 export default class ConversationList extends React.Component {
   constructor (props) {
@@ -16,7 +18,8 @@ export default class ConversationList extends React.Component {
       isLoading: true,
       user: [],
       conversation: [],
-      isClicked: false
+      isClicked: false,
+      openDrawer: false
     }
   }
 
@@ -33,7 +36,7 @@ export default class ConversationList extends React.Component {
     })
       .then(response => {
         console.log('ajjjja', response)
-        console.log('allah',response.data.Messanger)
+        console.log('allah', response.data.Messanger)
         this.props.dispatch(saveConversationList(response.data.Messanger))
       })
       .catch(error => {
@@ -80,12 +83,9 @@ export default class ConversationList extends React.Component {
   handleClickUser (user) {
     this.setState({ user: user })
     this.setState({ isClicked: true })
-    // this.setState({ conversation: conversation },
-    //   () => this.props.dispatch(conversationInformation(conversation)))
     this.props.dispatch(LoadUser(user))
-    // console.log('uuuuuser', conversation)
 
-    axios.get('http://mrk24251.pythonanywhere.com/api/auth/user',{
+    axios.get('http://mrk24251.pythonanywhere.com/api/auth/user', {
       headers: { Authorization: `Token ${window.localStorage.getItem('token')}`
       }
     })
@@ -99,30 +99,43 @@ export default class ConversationList extends React.Component {
       })
   }
 
+  handleDrawer () {
+    this.setState({ openDrawer: true })
+  }
+
+  handleCloseDrawer () {
+    this.setState({ openDrawer: false })
+  }
+
   render () {
     return (
       <div className='contact_list' >
-        <div >
-          <input
-            className='search'
-            placeholder='type a name...'
-            onChange={(e) => this.handleChange(e)}
-          />
-          { this.state.suggestedUsers.map((user, index) => {
-            return (
-              <div className='conv' key={index} onClick={() => this.handleClick(user)}>
-                <div className='profileContainer'>
-                  <img src={person} className='profile_img' />
-                </div>
-                <div className='contentContainer'>
-                  <div className='contact_content'>
-                    <span>{user.username}</span>
+        <div className='leftSide'>
+          <div>
+            <MyDrawer
+              open={this.state.openDrawer}
+              onClick={() => this.handleCloseDrawer()} />
+          </div>
+          <div>
+            <Mysearch
+              onChange={(e) => this.handleChange(e)}
+              onClick={() => this.handleDrawer()} />
+            { this.state.suggestedUsers.map((user, index) => {
+              return (
+                <div className='conv' key={index} onClick={() => this.handleClick(user)}>
+                  <div className='profileContainer'>
+                    <img src={person} className='profile_img' />
+                  </div>
+                  <div className='contentContainer'>
+                    <div className='contact_content'>
+                      <span>{user.username}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )
-          })
-          }
+              )
+            })
+            }
+          </div>
         </div>
         { this.props.conversationList.map((user, index) => {
           return (

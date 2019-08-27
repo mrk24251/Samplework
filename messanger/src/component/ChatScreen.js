@@ -51,7 +51,7 @@ export default class ChatScreen extends React.Component {
               ) : null}
             </div>
           </div>
-          
+
           <FooterContainer />
         </div>
       </div>

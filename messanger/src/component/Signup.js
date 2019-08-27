@@ -50,7 +50,7 @@ class Signup extends React.Component {
     let password2Error =validate('password2',this.state.Password2)
     this.setState({...this.state , error: {...this.state.error, email:emailError, password: passwordError, password2: password2Error}})
     
-    if(this.state.password === this.state.reTypePassword) {
+    if(this.state.password === this.state.password2) {
       //posting data
       let data = {
         username: this.state.Email,

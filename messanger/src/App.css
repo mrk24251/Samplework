@@ -320,11 +320,13 @@ textarea {
 .contact_list {
   border: 1px solid rgb(223, 223, 223);
   width: 35vw;
-  display: inline-block;
   background-color: #fff;
   overflow: scroll
 }
-
+.leftSide{
+  display: flex;
+  flex-direction: column;
+}
 .Chat {
   display: flex !important;
   flex-direction: column;
@@ -332,6 +334,23 @@ textarea {
   border: 1px solid #000;
   width: 100vw;
   background-color: #fff;
+}
+.search_bar {
+  display: flex;
+  flex-direction: row;
+}
+.MenuIcon {
+  width: 70px;
+  margin: 500px
+}
+.Drawer {
+  width: 35vw;
+}
+.drawer_header {
+  display: flex;
+  margin-left: 230px;
+  align-items: center;
+  justify-content: flex-end;
 }
 .conv {
   display: flex;
