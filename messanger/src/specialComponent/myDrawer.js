@@ -11,6 +11,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Switch from '@material-ui/core/Switch';
 
 export default function MyDrawer (props) {
   // constructor (props) {
@@ -22,7 +23,7 @@ export default function MyDrawer (props) {
     <Drawer
       anchor='left'
       open={props.open}
-      variant='persistent'
+      variant='temporary'
       className='Drawer'
       classes={{
         paper: classes.drawerPaper
@@ -37,7 +38,8 @@ export default function MyDrawer (props) {
       <List>
         <ListItem button>
           <ListItemIcon><ColorLensIcon /></ListItemIcon>
-          <ListItemText primary={'Theme'} />
+          <ListItemText primary={'Night Mode'} />
+          <Switch/>
         </ListItem>
       </List>
       <ExpansionPanel>

@@ -5,6 +5,9 @@ import * as moment from 'moment'
 import person from '../img/person.jpeg'
 import Mysearch from '../specialComponent/mysearch'
 import MyDrawer from '../specialComponent/myDrawer'
+import Spinner from 'react-spinkit'
+import { PassThrough } from 'stream';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class ConversationList extends React.Component {
   constructor (props) {
@@ -19,7 +22,8 @@ export default class ConversationList extends React.Component {
       user: [],
       conversation: [],
       isClicked: false,
-      openDrawer: false
+      openDrawer: false,
+      isLoadingSearch: false,
     }
   }
 
@@ -48,6 +52,8 @@ export default class ConversationList extends React.Component {
     let data = {
       username: e.target.value
     }
+
+    this.setState({isLoadingSearch: true})
     axios.post('http://mrk24251.pythonanywhere.com/searchh', data, {
       headers: { Authorization: `Token ${window.localStorage.getItem('token')}`
       }
@@ -55,13 +61,15 @@ export default class ConversationList extends React.Component {
       .then((response) => {
         console.log('response::::', response.data)
         this.setState({ suggestedUsers: response.data })
+        this.setState({isLoadingSearch:false})
       })
       .catch((error) => {
         console.log('error::::', error)
+        this.setState({isLoadingSearch:false})
       })
   }
 
-  handleClick (user) {
+  async handleClick (user) {
     let data = {
       user_id: user.id,
       first_name: user.first_name,
@@ -77,7 +85,7 @@ export default class ConversationList extends React.Component {
       .catch((error) => {
         console.log('erroppppppp', error)
       })
-    window.location.reload()
+    await window.location.reload()
   }
 
   handleClickUser (user) {
@@ -114,12 +122,29 @@ export default class ConversationList extends React.Component {
           <div>
             <MyDrawer
               open={this.state.openDrawer}
-              onClick={() => this.handleCloseDrawer()} />
+              onClick={() => this.handleCloseDrawer()} /> 
           </div>
           <div>
             <Mysearch
               onChange={(e) => this.handleChange(e)}
               onClick={() => this.handleDrawer()} />
+          
+          {this.state.isLoadingSearch ? (
+            <div className='LoadingSearch'>
+              <span
+                className='LoadingSearchText'>
+                searching
+              </span>
+              <Spinner 
+                name="ball-beat"
+                color="green"
+                className="LoadingSearchUI"
+                />
+            </div>
+            ) : 
+              PassThrough
+            }
+
             { this.state.suggestedUsers.map((user, index) => {
               return (
                 <div className='conv' key={index} onClick={() => this.handleClick(user)}>
@@ -149,7 +174,9 @@ export default class ConversationList extends React.Component {
                   <span className='latest_date'>{moment(moment(moment(user.create_at).add(4, 'hour')).add(30, 'minute')).startOf('minute').fromNow()}</span>
                 </div>
                 <div className='contact_content'>
-                  <span className='latest_message'>{}</span>
+                  {user.latest_message=="" ? (
+                    <span className='latest_message'>{}</span>
+                  ) : <span className='latest_message'>{user.latest_message.fields.text}</span>}
                   <span className='unseen_message'>{}</span>
                 </div>
               </div>

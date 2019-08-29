@@ -343,6 +343,15 @@ textarea {
   width: 70px;
   margin: 500px
 }
+.LoadingSearchText {
+  color: rgb(65, 122, 8);
+  font-weight: 1200;
+  font-size: 1000;
+}
+.LoadingSearchUI {
+  display: inline-block;
+  padding-top: 10px;
+}
 .Drawer {
   width: 35vw;
 }
