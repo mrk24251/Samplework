@@ -1,0 +1,30 @@
+.card {
+    height: '100%';
+    display: 'flex';
+    flex-direction: 'column';
+}
+.cardMedia {
+    padding-top: '56.25%', // 16:9
+}
+.cardContent {
+    flex-grow: 1
+}
+.cardGrid {
+    padding-top: 8px;
+    padding-bottom: 15px
+}
+/* .paper {
+    background-color: #fff;
+    border: '2px solid #000';
+    padding: 5px
+} */
+.modal {
+    display: 'flex';
+    align-items: 'center';
+    justify-content: 'center';
+    margin: 50px;
+}
+.paper {
+    padding: 100px;
+    margin: 100px;
+}
