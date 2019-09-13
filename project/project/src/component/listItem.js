@@ -30,10 +30,10 @@ export default class Mycard extends React.Component {
                         />
                         <CardContent className='cardContent'>
                         <Typography gutterBottom variant="h5" component="h2">
-                            TTT
+                            {card.title}
                         </Typography>
                         <Typography>
-                            TTTT
+                            {card.description}
                         </Typography>
                         </CardContent>
                     </Card>

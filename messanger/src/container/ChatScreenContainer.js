@@ -11,7 +11,8 @@ const mapStateToProps = state => {
     message: state.message,
     showEmojiPicker: state.showEmojiPicker,
     messages: state.messages,
-    user: state.user
+    user: state.user,
+    choosedUser: state.choosedUser
   }
 }
 

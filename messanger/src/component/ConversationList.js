@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { saveConversationList, LoadUser, conversationInformation, AddNewMassage } from '../action/conversation'
+import { saveConversationList, LoadUser, conversationInformation, AddNewMassage, choosedUser } from '../action/conversation'
 import * as moment from 'moment'
 import person from '../img/person.jpeg'
 import Mysearch from '../specialComponent/mysearch'
@@ -24,6 +24,7 @@ export default class ConversationList extends React.Component {
       isClicked: false,
       openDrawer: false,
       isLoadingSearch: false,
+      choosedUser: false
     }
   }
 
@@ -34,6 +35,8 @@ export default class ConversationList extends React.Component {
       this.handleClickUser(this.state.user)
     }, 5000)
 
+    this.props.dispatch(choosedUser(this.state.choosedUser))
+    
     axios.get('http://mrk24251.pythonanywhere.com/api/auth/user', {
       headers: { Authorization: `Token ${window.localStorage.getItem('token')}`
       }
@@ -69,7 +72,7 @@ export default class ConversationList extends React.Component {
       })
   }
 
-  async handleClick (user) {
+  handleClick (user) {
     let data = {
       user_id: user.id,
       first_name: user.first_name,
@@ -81,11 +84,11 @@ export default class ConversationList extends React.Component {
     })
       .then((response) => {
         console.log('respons,c33', response)
+        window.location.reload()
       })
       .catch((error) => {
         console.log('erroppppppp', error)
       })
-    await window.location.reload()
   }
 
   handleClickUser (user) {
@@ -101,6 +104,8 @@ export default class ConversationList extends React.Component {
         console.log('respons,c33', response.data)
         this.setState({ messages: response.data.Messages },
           () => this.props.dispatch(AddNewMassage(this.state.messages)))
+
+        this.setState({choosedUser: true}, () => this.props.dispatch(choosedUser(this.state.choosedUser)))
       })
       .catch((error) => {
         console.log('error::::', error)

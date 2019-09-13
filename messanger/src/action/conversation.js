@@ -26,6 +26,11 @@ export const chooseEmoji = () => ({
   type: 'CHOSEN_EMOJI'
 })
 
+export const choosedUser = (choosedUser) => ({
+  type: 'CHOSEN_USER',
+  payload: choosedUser
+})
+
 export const saveConversationList = (conversationList) => ({
   type: 'SAVE_CONVERSATION_LIST',
   payload: conversationList

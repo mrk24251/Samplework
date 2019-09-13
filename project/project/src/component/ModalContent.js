@@ -25,15 +25,15 @@ export default class ModalContent extends React.Component {
             description: this.state.description
         }
 
-        await axios.post('http://localhost:3001/api/', data)
-          .then((response) => {
-            console.log('respons,c33', response)
-          })
-          .catch((error) => {
-            console.log('error::::', error)
-          })
+        // await axios.post('http://localhost:3001/api/', data)
+        //   .then((response) => {
+        //     console.log('respons,c33', response)
+        //   })
+        //   .catch((error) => {
+        //     console.log('error::::', error)
+        //   })
 
-        window.location.reload()
+        // window.location.reload()
       }
 
     render(){

@@ -7,6 +7,7 @@ import {
 import 'emoji-mart/css/emoji-mart.css'
 import FooterContainer from '../container/FooterContainer'
 import person from '../img/person.jpeg'
+import { PassThrough } from 'stream';
 
 export default class ChatScreen extends React.Component {
   constructor (props) {
@@ -51,7 +52,6 @@ export default class ChatScreen extends React.Component {
               ) : null}
             </div>
           </div>
-
           <FooterContainer />
         </div>
       </div>

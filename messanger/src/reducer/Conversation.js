@@ -48,6 +48,10 @@ function conversation (state = INIT, action) {
       return { ...state,
         conversation: action.payload
       }
+    case 'CHOSEN_USER':
+      return {...state,
+        choosedUser: action.payload
+      }
     default:
       return state
   }

@@ -13,8 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
-import CardList from './list';
 import ModalPage from './popUp'
+import ListContainer from '../container/listContainer';
 
 
 const useStyles = makeStyles(theme => ({
@@ -74,7 +74,7 @@ export default function Album() {
             </Typography>
           </Container>
         </div>
-        <CardList />
+        <ListContainer />
         <ModalPage />
         {/* <Container className={classes.cardGrid} maxWidth="md"> */}
           {/* End hero unit */}

@@ -9,12 +9,13 @@ import {addNewProduct} from '../action/Project'
 export default class CardList extends React.Component {
 
     componentDidMount() {
-        axios.get('http://localhost:3001/api/')
+        axios.get('http://localhost:3004/posts1')
           .then((response) => {
+            console.log('sss',response)
             this.props.dispatch(addNewProduct(response.data))
           })
           .catch((error) => {
-            console.log('error::::', error)
+            console.log('error555', error)
           })
     }
 
