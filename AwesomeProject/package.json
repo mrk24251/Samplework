@@ -15,7 +15,7 @@
     "@react-native-community/async-storage": "^1.6.1",
     "axios": "^0.19.0",
     "react": "16.8.3",
-    "react-native": "0.59.9",
+    "react-native": "0.62.3",
     "react-native-elements": "^1.1.0",
     "react-native-fontawesome": "^6.0.1",
     "react-native-textinput-effects": "^0.5.1",
