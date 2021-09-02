@@ -7,7 +7,7 @@
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.3.3",
     "@webscopeio/react-textarea-autocomplete": "^4.4.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "emoji-mart": "^2.11.1",
     "emoji-picker-react": "^2.1.1",
     "moment": "^2.24.0",
